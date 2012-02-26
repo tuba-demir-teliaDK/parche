@@ -1,0 +1,21 @@
+<h1>Listing venue products by product id</h1>
+
+<table>
+  <tr>
+  	<th>Product Name</th>
+    <th>Venue Name</th>    
+    <th>Ver. Price</th>
+    <th>Item Count</th>
+    <th>Checkin Count</th>
+  </tr>
+
+<% @venue_products.each do |venue_product| %>
+  <tr>
+    <td><%= venue_product.product.name%></td>
+    <td><%= venue_product.venue_id %></td>	
+    <td><%= venue_product.price %></td>
+    <td><%= venue_product.items.count%></td>
+    <td><%= venue_product.checkins.count%></td>
+  </tr>
+<% end %>
+</table>

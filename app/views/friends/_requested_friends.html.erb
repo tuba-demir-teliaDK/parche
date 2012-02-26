@@ -1,0 +1,9 @@
+<% unless @user.requested_friends.empty? %>
+<% @user.requested_friends.each do |u| %>
+<%= u.firstName %> <%= u.lastName %>
+<b>Requested  <%= u.created_at.to_s(:long) %></b>
+	<%= link_to '[Cancel]', user_friend_path(:user_id => 1, :id => u), :method => :delete, :confirm => 'Are you sure?' %>
+<% end %>
+<% else %>
+None
+<% end %>

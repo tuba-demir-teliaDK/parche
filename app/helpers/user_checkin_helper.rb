@@ -1,0 +1,2 @@
+module UserCheckinHelper
+end

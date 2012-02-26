@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cheepar</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ <p class="notice"><%= notice %></p>
+ <p class="alert"><%= alert %></p>
+ <div class="">
+ 	<%=link_to "venues", venues_path %>
+ 	<%=link_to "products", products_path %>
+ 	<%=link_to "venue products", venue_products_path %>
+ 	<%=link_to "items", items_path %>	
+	<%=link_to "checkins", checkins_path %>
+	<%=link_to "users", users_path %>
+	<%=link_to "friendships", friendships_path %>
+</div>
+
+<%= yield %>
+	
+<%= debug(params) if Rails.env.development? %>
+</body>
+</html>

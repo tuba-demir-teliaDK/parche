@@ -1,0 +1,29 @@
+<h1>Listing venue_products</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Venue</th>
+    <th>Product</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @venue_products.each do |venue_product| %>
+  <tr>
+    <td><%= venue_product.id %></td>
+    <td><%= venue_product.venue_id %></td>
+    <td><%= venue_product.product_id %></td>
+    <td><%= venue_product.price %></td>
+    <td><%= link_to 'Show', venue_product %></td>
+    <td><%= link_to 'Edit', edit_venue_product_path(venue_product) %></td>
+    <td><%= link_to 'Destroy', venue_product, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Venue product', new_venue_product_path %>

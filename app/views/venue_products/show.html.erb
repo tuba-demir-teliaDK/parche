@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Venue:</b>
+  <%= @venue_product.venue_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%= @venue_product.product_id %>
+</p>
+<p>
+  <b>Price:</b>
+  <%= @venue_product.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_venue_product_path(@venue_product) %> |
+<%= link_to 'Back', venue_products_path %>

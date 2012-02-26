@@ -1,0 +1,2 @@
+module VenueProductsHelper
+end

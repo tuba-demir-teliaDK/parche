@@ -1,0 +1,8 @@
+<% unless @user.friends.empty? %>
+<% @user.friends.each do |u| %>
+<%= u.firstName %> <%= u.lastName %>
+Since <%= u.created_at.to_s(:long) %>
+<% end %>
+<% else %>
+None
+<% end %>
