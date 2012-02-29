@@ -7,7 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
- <div class="container">
 	<div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -22,7 +21,6 @@
 				<li> <%=link_to "VenueProducts", venue_products_path %></li>
 				<li><%=link_to "Items", items_path %>	</li>
 				<li><%=link_to "Checkins", checkins_path %></li>
-				<li><%=link_to "Users", users_path %></li>
 				<li><%=link_to "Friendships", friendships_path %></li>
 			</ul>        	
             <ul class="nav pull-right">
@@ -42,12 +40,20 @@
             </ul>
         </div>
       </div>
-    </div>
- <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
+	</div>
+	
+	<div class="container">
+	    <%- if !notice.nil? or !alert.nil? -%>
+		    <div class="alert alert-block">
+			 	<a class="close" data-dismiss="alert">×</a>
+				 <%= notice %>
+				 <%= alert %>
+			</div>
+		<%- end -%>
+		
+		<%= yield %>
+	<div>
 
-
-<%= yield %>
 </div>	
 <!-- <%= debug(params) if Rails.env.development? %> -->
 </body>

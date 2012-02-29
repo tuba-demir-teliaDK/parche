@@ -1,5 +1,9 @@
 Cheepar::Application.routes.draw do
     
+  devise_for :users do
+    delete "/logout" => "devise/sessions#destroy"
+  end
+
   resources :venues
 
   resources :items do

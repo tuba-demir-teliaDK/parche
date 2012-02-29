@@ -1,10 +1,12 @@
 <div class="hero-unit">
   <h1>cheepar.admin</h1>
-  <p>logged as user:huseyinozcan at Feb. 26th</p>
+  <p>logged as user:  <%= current_user.firstName %> <%=  current_user.lastName %>(<%= current_user.email %>)</p>
+  <p>last signed in at <%= current_user.last_sign_in_at %></p>
+  <p>last signed in from <%= current_user.last_sign_in_ip %></p>
   <p>
-    <a class="btn btn-primary btn-large">
-       Start
-    </a>
+    <a class="btn btn-primary btn-large">edit profile</a>
+    <a class="btn btn-large">logout</a>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   </p>
 </div>
 <table class="table table-striped">
