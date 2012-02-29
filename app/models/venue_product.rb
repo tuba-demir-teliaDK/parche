@@ -21,6 +21,9 @@ class VenueProduct < ActiveRecord::Base
     def by_product(product)
       self.where("product_id = ?", product.id)
     end
+    def by_venue(venue_id)
+      self.where("venue_id = ?", venue_id)
+    end
   end
   
 end

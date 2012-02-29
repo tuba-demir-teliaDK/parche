@@ -28,7 +28,7 @@ Cheepar::Application.routes.draw do
     end
   end
 
-  match 'vp/:venue_id' => 'venue_products#index'
+  match 'vp/:venue_id' => 'venue_products#ovenues'
   match 'vpl/:id' => 'venue_products#ovenues'
   
   resources :users do

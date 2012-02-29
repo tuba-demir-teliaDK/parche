@@ -88,8 +88,13 @@ class VenueProductsController < ApplicationController
 
   
   def ovenues
-    @product= Product.find(VenueProduct.find(params[:id]).product.id)
-    @venue_products= VenueProduct.by_product(@product)
+    if !params[:venue_id].nil?
+      #@venue= Venue.find(params[:venue_id])
+      @venue_products= VenueProduct.by_venue(params[:venue_id])
+    elsif !params[:id].nil?
+      @product= Product.find(VenueProduct.find(params[:id]).product.id)
+      @venue_products= VenueProduct.by_product(@product)
+    end
     
     respond_to do |format|
       format.html # ovenues.html.erb
