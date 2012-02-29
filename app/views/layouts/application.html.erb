@@ -7,20 +7,48 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+ <div class="container">
+	<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">
+              Cheepar
+            </a>
+        
+            <ul class="nav">
+              	<li class="active"><a href="<%= root_url%>">Home</a></li>
+				<li><%=link_to "Venues", venues_path %></li>
+				<li><%=link_to "Products", products_path %></li>
+				<li> <%=link_to "VenueProducts", venue_products_path %></li>
+				<li><%=link_to "Items", items_path %>	</li>
+				<li><%=link_to "Checkins", checkins_path %></li>
+				<li><%=link_to "Users", users_path %></li>
+				<li><%=link_to "Friendships", friendships_path %></li>
+			</ul>        	
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a href="#"
+                      class="dropdown-toggle"
+                      data-toggle="dropdown">
+                      Profile
+                      <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Change Password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
  <p class="notice"><%= notice %></p>
  <p class="alert"><%= alert %></p>
- <div class="">
- 	<%=link_to "venues", venues_path %>
- 	<%=link_to "products", products_path %>
- 	<%=link_to "venue products", venue_products_path %>
- 	<%=link_to "items", items_path %>	
-	<%=link_to "checkins", checkins_path %>
-	<%=link_to "users", users_path %>
-	<%=link_to "friendships", friendships_path %>
-</div>
+
 
 <%= yield %>
-	
-<%= debug(params) if Rails.env.development? %>
+</div>	
+<!-- <%= debug(params) if Rails.env.development? %> -->
 </body>
 </html>

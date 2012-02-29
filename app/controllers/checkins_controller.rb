@@ -51,6 +51,15 @@ class CheckinsController < ApplicationController
   # POST /checkins.json
   def create
     @checkin = Checkin.new(params[:checkin])
+    
+    @item = Item.find(@checkin.item.id)
+    
+    if @item 
+      Item.increment_counter(:checkin_count,@item.id)
+      @venue_product=VenueProduct.find(@item.venue_product.id)
+      VenueProduct.increment_counter(:checkin_count,@item.venue_product.id)
+      @venue_product.update_attribute(:last_checkin_price,@item.price)
+    end
 
     respond_to do |format|
       if @checkin.save

@@ -1,7 +1,5 @@
 Cheepar::Application.routes.draw do
     
-  resources :items
-
   resources :venues
 
   resources :items do
@@ -14,7 +12,9 @@ Cheepar::Application.routes.draw do
 
   resources :venue_products do
    
-    
+    member do
+      get 'ovenues'
+    end
     #collection do
     #  get 'showWith4sq/:venue_id' , :action => 'showWith4sq'
     # end
@@ -25,7 +25,7 @@ Cheepar::Application.routes.draw do
   end
 
   match 'vp/:venue_id' => 'venue_products#index'
-  match 'vpl/:product_id' => 'venue_products#venueproductlist'
+  match 'vpl/:id' => 'venue_products#ovenues'
   
   resources :users do
     resources :checkins do

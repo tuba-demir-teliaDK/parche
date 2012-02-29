@@ -1,10 +1,11 @@
-<h1>Listing items</h1>
+<h3>Listing items</h3>
 
-<table>
+<table class="table table-striped table-condensed">
   <tr>
     <th>ID</th>
     <th>Venue product</th>
     <th>Price</th>
+    <th>Checkin Count</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +16,7 @@
     <td><%= item.id %></td>
     <td><%= item.venue_product_id %></td>
     <td><%= item.price %></td>
+    <td><%= item.checkin_count %></td>
     <td><%= link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>

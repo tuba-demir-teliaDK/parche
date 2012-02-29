@@ -46,7 +46,7 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   # POST /friendships.json
   def create
-    @user = User.find(1)
+    @user = User.find(params[:friend_id])
     @friend = User.find(params[:friend_id])
     params[:friendship1] = {:user_id => @user.id, :friend_id => @friend.id, :status => 'requested'}
     params[:friendship2] = {:user_id => @friend.id, :friend_id => @user.id, :status => 'pending'}

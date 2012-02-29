@@ -87,11 +87,12 @@ class VenueProductsController < ApplicationController
   end
 
   
-  def venueproductlist
-    @venue_products= VenueProduct.where("product_id = ?", params[:product_id])
+  def ovenues
+    @product= Product.find(VenueProduct.find(params[:id]).product.id)
+    @venue_products= VenueProduct.by_product(@product)
     
     respond_to do |format|
-      format.html # venue_product_details.html.erb
+      format.html # ovenues.html.erb
       format.json { render json: @venue_products }
     end
   end
