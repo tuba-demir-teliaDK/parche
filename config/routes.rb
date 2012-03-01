@@ -17,7 +17,7 @@ Cheepar::Application.routes.draw do
   resources :venue_products do
    
     member do
-      get 'ovenues'
+      get 'vplist'
     end
     #collection do
     #  get 'showWith4sq/:venue_id' , :action => 'showWith4sq'
@@ -28,8 +28,8 @@ Cheepar::Application.routes.draw do
     end
   end
 
-  match 'vp/:venue_id' => 'venue_products#ovenues'
-  match 'vpl/:id' => 'venue_products#ovenues'
+  match 'vp_v/:venue_id' => 'venue_products#vplist'
+  match 'vp_p/:id' => 'venue_products#vplist'
   
   resources :users do
     resources :checkins do

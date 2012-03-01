@@ -34,7 +34,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Change Password</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
                 </ul>
               </li>
             </ul>

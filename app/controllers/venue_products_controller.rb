@@ -87,18 +87,38 @@ class VenueProductsController < ApplicationController
   end
 
   
-  def ovenues
+  def vplist
+    
     if !params[:venue_id].nil?
-      #@venue= Venue.find(params[:venue_id])
-      @venue_products= VenueProduct.by_venue(params[:venue_id])
+      @venue_products= VenueProduct.all(:include=> :product, :conditions=> {:venue_id => params[:venue_id]})
     elsif !params[:id].nil?
-      @product= Product.find(VenueProduct.find(params[:id]).product.id)
-      @venue_products= VenueProduct.by_product(@product)
+      #@product= Product.find(VenueProduct.find(params[:id]).product.id)
+      @venue_products= VenueProduct.all(:include=> :product, :conditions=> {:products=> {:id => params[:id]}})
+      #@venue_products= VenueProduct.find(:all,)
     end
     
     respond_to do |format|
-      format.html # ovenues.html.erb
-      format.json { render json: @venue_products }
+      format.html # vpl_by_parameter.html.erb
+      if !params[:id].nil?
+        #format.json{render :json =>vplist_as_json(@venue_products,'v')} 
+        format.json { 
+          render :json => @venue_products.to_json(:include => {
+              :most_checkined_item => {:only => [:price , :id] },
+              :last_checkined_item => {:only => [:price , :id] },              
+            },
+            :methods => :venue_name
+            ) 
+        }
+      elsif !params[:venue_id].nil?
+          format.json { 
+          render :json => @venue_products.to_json(:include => {
+            :product => {:only => [:id, :name]},
+            :most_checkined_item => {:only => [:price , :id] },
+            :last_checkined_item => {:only => [:price , :id] }
+            }, :except => :product_id
+            ) 
+        }
+      end
     end
   end
 end
