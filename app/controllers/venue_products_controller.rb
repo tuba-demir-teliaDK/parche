@@ -101,6 +101,7 @@ class VenueProductsController < ApplicationController
       format.html # vpl_by_parameter.html.erb
       if !params[:id].nil?
         #format.json{render :json =>vplist_as_json(@venue_products,'v')} 
+        
         format.json { 
           render :json => @venue_products.to_json(:include => {
               :most_checkined_item => {:only => [:price , :id] },
@@ -110,6 +111,7 @@ class VenueProductsController < ApplicationController
             ) 
         }
       elsif !params[:venue_id].nil?
+          @vName=@venue_products.first.venue_name
           format.json { 
           render :json => @venue_products.to_json(:include => {
             :product => {:only => [:id, :name]},

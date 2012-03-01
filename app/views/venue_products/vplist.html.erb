@@ -15,7 +15,11 @@
   <tr>
     <td><%= venue_product.product.name %></td>
     <td><%= venue_product.venue_id %></td>	
-    <td><%= get_venue_name(venue_product.venue_id) %></td>	
+    <%- if !@vName.nil? -%>
+	    <td><%= @vName %></td>	
+	<%- else -%>
+    	<td><%= get_venue_name(venue_product.venue_id) %></td>	
+    <%- end -%>
     <td><%= venue_product.price %></td>
     <td><%= venue_product.last_checkined_item.price if !venue_product.last_checkined_item.nil?  %></td>
     <td><%= venue_product.most_checkined_item.price if !venue_product.most_checkined_item.nil? %></td>

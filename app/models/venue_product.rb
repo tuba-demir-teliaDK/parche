@@ -1,3 +1,4 @@
+include ApplicationHelper
 class VenueProduct < ActiveRecord::Base
   belongs_to :product
   has_many :items  
