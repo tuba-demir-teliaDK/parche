@@ -5,8 +5,7 @@
   <p>last signed in from <%= current_user.last_sign_in_ip %></p>
   <p>
     <a class="btn btn-primary btn-large">edit profile</a>
-    <a class="btn btn-large">logout</a>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <%= link_to "sign out", destroy_user_session_path, :method => :delete, :class=>'btn btn-large' %>
   </p>
 </div>
 <table class="table table-striped">

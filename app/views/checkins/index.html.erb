@@ -19,7 +19,7 @@
     <td><%= link_to 'Show', checkin %></td>
     <td><%= link_to 'Show Item', item_path(checkin.item_id) %></td>
     <td><%= link_to 'Edit', edit_checkin_path(checkin) %></td>
-    <td><%= link_to 'Destroy', checkin, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', checkin, confirm: 'Are you sure?', method: :delete, :remote=>true, :class=>'delete_row' %></td>
   </tr>
 <% end %>
 </table>

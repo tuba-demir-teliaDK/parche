@@ -78,6 +78,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to items_url }
       format.json { head :ok }
+      format.js   { render :nothing => true } 
     end
   end
 end

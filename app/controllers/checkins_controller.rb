@@ -1,4 +1,5 @@
 class CheckinsController < ApplicationController
+  load_and_authorize_resource
   # GET /checkins
   # GET /checkins.json
   def index
@@ -97,6 +98,7 @@ class CheckinsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to checkins_url }
       format.json { head :ok }
+      format.js   { render :nothing => true } 
     end
   end
 end

@@ -9,3 +9,7 @@
 //= require_tree .
 // Loads all Bootstrap javascripts
 //= @require bootstrap
+
+$('.delete_row').live('ajax:success', function() {  
+    $(this).parent().parent().fadeOut();
+});
