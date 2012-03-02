@@ -4,9 +4,9 @@
   	<th>Product Name</th>
     <th>Venue ID</th>
     <th>Venue Name</th>       
-    <th>Verified Price</th>
-    <th>Last Checkin Price</th>
-    <th>Most Checkin Price</th>
+    <th>Verified Item</th>
+    <th>Last Checkined Item</th>
+    <th>Most Checkined Item</th>
     <th>Item Count</th>
     <th>Checkin Count</th>
   </tr>
@@ -20,7 +20,7 @@
 	<%- else -%>
     	<td><%= get_venue_name(venue_product.venue_id) %></td>	
     <%- end -%>
-    <td><%= venue_product.price %></td>
+    <td><%= venue_product.verified_item.price if !venue_product.verified_item.nil?%></td>
     <td><%= venue_product.last_checkined_item.price if !venue_product.last_checkined_item.nil?  %></td>
     <td><%= venue_product.most_checkined_item.price if !venue_product.most_checkined_item.nil? %></td>
     <td><%= venue_product.items.size %></td>

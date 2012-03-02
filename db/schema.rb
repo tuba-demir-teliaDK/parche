@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302132239) do
+ActiveRecord::Schema.define(:version => 20120302230556) do
 
   create_table "books", :force => true do |t|
     t.string   "name"
@@ -99,10 +99,10 @@ ActiveRecord::Schema.define(:version => 20120302132239) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price"
-    t.decimal  "last_checkin_price"
-    t.decimal  "most_checkin_price"
     t.integer  "checkin_count"
+    t.integer  "most_checkined_item_id"
+    t.integer  "last_checkined_item_id"
+    t.integer  "verified_item_id"
   end
 
   add_index "venue_products", ["venue_id", "product_id"], :name => "index_venue_products_on_venue_id_and_product_id", :unique => true

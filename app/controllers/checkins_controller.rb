@@ -1,5 +1,5 @@
 class CheckinsController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource
   # GET /checkins
   # GET /checkins.json
   def index
@@ -59,7 +59,7 @@ class CheckinsController < ApplicationController
       Item.increment_counter(:checkin_count,@item.id)
       @venue_product=VenueProduct.find(@item.venue_product.id)
       VenueProduct.increment_counter(:checkin_count,@item.venue_product.id)
-      @venue_product.update_attribute(:last_checkin_price,@item.price)
+      @venue_product.update_attribute(:last_checkined_item_id,@item.id)
     end
 
     respond_to do |format|

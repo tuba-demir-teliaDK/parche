@@ -5,6 +5,7 @@ class VenueProduct < ActiveRecord::Base
   has_many :checkins, :through => :items   
   validates_presence_of :product
   
+  
   #default_scope order("created_at ASC")
   attr_accessor :most_checkined_item, :last_checkined_item, :venue_name
   
@@ -12,13 +13,20 @@ class VenueProduct < ActiveRecord::Base
     get_venue_name(self.venue_id)
   end
   
-  def most_checkined_item
-    self.items.order('checkin_count desc').first
-  end
-  
-  def last_checkined_item
-    self.items.all(:joins => :checkins, :select => "items.*, max(checkins.created_at)").first
-  end
+   
+   def verified_item
+     Item.find(self.verified_item_id) if !self.verified_item_id.nil?
+   end
+   
+   def most_checkined_item
+     self.items.order('checkin_count desc').first
+     #Item.find(self.most_checkined_item_id) if !self.most_checkined_item_id.nil?
+   end
+   
+    def last_checkined_item
+      Item.find(self.last_checkined_item_id) if !self.last_checkined_item_id.nil?    
+      #self.items.all(:joins => :checkins, :select => "items.*, max(checkins.created_at)").first
+    end
   
   class << self
     #def by_product(product)

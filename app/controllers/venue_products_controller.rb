@@ -105,9 +105,11 @@ class VenueProductsController < ApplicationController
         format.json { 
           render :json => @venue_products.to_json(:include => {
               :most_checkined_item => {:only => [:price , :id] },
-              :last_checkined_item => {:only => [:price , :id] },              
+              :last_checkined_item => {:only => [:price , :id] },
+              :verified_item => {:only => [:price , :id] },              
             },
-            :methods => :venue_name
+            :methods => :venue_name,
+            :except => [:most_checkined_item_id, :last_checkined_item_id, :verified_item_id]
             ) 
         }
       elsif !params[:venue_id].nil?
@@ -116,8 +118,9 @@ class VenueProductsController < ApplicationController
           render :json => @venue_products.to_json(:include => {
             :product => {:only => [:id, :name]},
             :most_checkined_item => {:only => [:price , :id] },
-            :last_checkined_item => {:only => [:price , :id] }
-            }, :except => :product_id
+            :last_checkined_item => {:only => [:price , :id] },
+            :verified_item => {:only => [:price , :id] },              
+            }, :except => [:product_id,:most_checkined_item_id, :last_checkined_item_id, :verified_item_id]
             ) 
         }
       end
