@@ -13,3 +13,4 @@
 $('.delete_row').live('ajax:success', function() {  
     $(this).parent().parent().fadeOut();
 });
+
