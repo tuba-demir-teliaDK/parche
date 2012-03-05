@@ -4,3 +4,5 @@ db/*.sqlite3
 tmp/
 .sass-cache/
 Gemfile.lock
+db/development.sqlite3
+
