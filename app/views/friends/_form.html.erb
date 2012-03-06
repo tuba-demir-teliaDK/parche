@@ -1,0 +1,15 @@
+<%= form_for(@friends) do |f| %>
+
+  <div class="field">
+    <%= f.label :friend_id %><br />
+    <%= f.number_field :friend_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.number_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+<% end %>

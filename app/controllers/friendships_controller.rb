@@ -2,11 +2,12 @@ class FriendshipsController < ApplicationController
   # GET /friendships
   # GET /friendships.json
   def index
-    @friendships = Friendship.all
-    
+   
     if params[:user_id] 
       @user= User.find(params[:user_id])
       @friendships = @user.friends
+    else
+       @friendships = Friendship.all
     end
 
     respond_to do |format|
@@ -46,15 +47,11 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   # POST /friendships.json
   def create
-    @user = User.find(params[:friend_id])
-    @friend = User.find(params[:friend_id])
-    params[:friendship1] = {:user_id => @user.id, :friend_id => @friend.id, :status => 'requested'}
-    params[:friendship2] = {:user_id => @friend.id, :friend_id => @user.id, :status => 'pending'}
-    @friendship1 = Friendship.create(params[:friendship1])
-    @friendship2 = Friendship.create(params[:friendship2])
+    
+   @friendship = Friendship.new(params[:friendship])
 
     respond_to do |format|
-      if @friendship.save && @friendship2.save
+      if @friendship.save
         format.html { redirect_to @friendship, notice: 'Friendship was successfully created.' }
         format.json { render json: @friendship, status: :created, location: @friendship }
       else

@@ -1,5 +1,5 @@
 class CheckinsController < ApplicationController
-  #load_and_authorize_resource
+  load_and_authorize_resource
   # GET /checkins
   # GET /checkins.json
   def index

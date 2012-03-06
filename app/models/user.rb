@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token!   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstName, :lastName, :authentication_token
+  attr_accessible :id, :email, :password, :password_confirmation, :remember_me, :firstName, :lastName, :authentication_token
+  
+  attr_protected :roles_mask
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
      
@@ -25,10 +27,13 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
   #relations      
   has_many :checkins
-  has_many :items, :through => :items           
-  has_many :friends, :through => :friendships, :conditions => "status = 'accepted'"
-  has_many :requested_friends, :through => :friendships, :source => :friend, :conditions => "status = 'requested'", :order => :created_at
-  has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "status = 'pending'", :order => :created_at
+  has_many :items, :through => :items 
+  
+  #friendship relations
+  #0-requested,1-pending,2-accepted          
+  has_many :friends, :through => :friendships, :conditions => "status = 2"
+  has_many :requested_friends, :through => :friendships, :source => :friend, :conditions => "status = 0", :order => :created_at
+  has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "status = 1", :order => :created_at
   has_many :friendships, :dependent => :destroy  
   
   #authorizations

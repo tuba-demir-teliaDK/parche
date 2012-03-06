@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302230556) do
+ActiveRecord::Schema.define(:version => 20120305181628) do
 
   create_table "books", :force => true do |t|
     t.string   "name"
@@ -30,10 +30,12 @@ ActiveRecord::Schema.define(:version => 20120302230556) do
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.string   "status"
+    t.integer  "status",     :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "friendships", ["user_id", "friend_id", "status"], :name => "index_friendships_on_user_id_and_friend_id_and_status", :unique => true
 
   create_table "items", :force => true do |t|
     t.integer  "venue_product_id"

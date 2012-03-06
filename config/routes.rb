@@ -1,9 +1,11 @@
 Cheepar::Application.routes.draw do
     
-  devise_for :users,:controllers => {:sessions => "sessions"} do
+  devise_for :users,:controllers => {:sessions => "sessions",:registrations => "registrations"} do
     delete "/logout" => "devise/sessions#destroy"
   end
-
+  
+  resources :users
+  
   resources :venues
 
   resources :items do
@@ -12,6 +14,8 @@ Cheepar::Application.routes.draw do
 
   resources :friendships 
   
+  resources :friends
+  
   resources :checkins
 
   resources :venue_products do
@@ -19,10 +23,7 @@ Cheepar::Application.routes.draw do
     member do
       get 'vplist'
     end
-    #collection do
-    #  get 'showWith4sq/:venue_id' , :action => 'showWith4sq'
-    # end
-    
+
     resources :items do
       resources :checkins
     end
@@ -30,6 +31,7 @@ Cheepar::Application.routes.draw do
 
   match 'vp_v/:venue_id' => 'venue_products#vplist'
   match 'vp_p/:id' => 'venue_products#vplist'
+  match 'logout' => 'devise/session#destroy'
   
   resources :users do
     resources :checkins do

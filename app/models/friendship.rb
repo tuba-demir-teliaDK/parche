@@ -4,4 +4,7 @@ class Friendship < ActiveRecord::Base
   
   validates_presence_of :user
   validates_presence_of :friend
+
+  validates_uniqueness_of :user_id, :scope => [:friend_id,:status]
+  
 end

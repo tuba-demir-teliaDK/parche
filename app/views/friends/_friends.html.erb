@@ -1,8 +1,10 @@
 <% unless @user.friends.empty? %>
-<% @user.friends.each do |u| %>
-<%= u.firstName %> <%= u.lastName %>
-Since <%= u.created_at.to_s(:long) %>
-<% end %>
+	<% @user.friends.each do |u| %>
+	<%= u.firstName %> <%= u.lastName %>
+		<%= link_to "sss", user_path(u.id) %>
+		<%= u.firstName %> <%= u.lastName %>
+		Since <%= u.created_at.to_s(:long) %>
+	<% end %>
 <% else %>
-None
+	None
 <% end %>

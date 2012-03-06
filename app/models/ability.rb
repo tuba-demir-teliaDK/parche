@@ -11,6 +11,7 @@ class Ability
      else
        puts 'user'
        can :manage, Checkin, :user_id => user.id
+       #can :manage, Friendship, :user_id => user.id
        cannot :destroy, Checkin
        #can :create, Item, :user_id => user_id
      end
