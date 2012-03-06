@@ -2,7 +2,7 @@
 <table class="table table-striped table-condensed">
   <tr>
     <th>ID</th>
-    <th>VenueID</th>
+    <th>4sqVenueID</th>
     <th>Venue Name</th>
     <th>Product</th>
     <th>Verified Item</th>
@@ -18,7 +18,7 @@
 <% @venue_products.each do |venue_product| %>
   <tr>
     <td><%= venue_product.id %></td>
-    <td><%= venue_product.venue_id %></td>
+    <td><%= venue_product.fs_venue_id %></td>
     <td></td>
     <td><%= venue_product.product_id %></td>
     <td><%= venue_product.verified_item.price if !venue_product.verified_item.nil? %></td>

@@ -4,8 +4,14 @@ class FriendsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      data={"friends"=>@user.friends,"pending_friends"=>@user.pending_friends,"requested_friends"=>@user.requested_friends}
-      format.json { render json: data }
+      #data={"friends"=>,"pending_friends"=>@user.pending_friends,"requested_friends"=>@user.requested_friends}
+      format.json { 
+        render json: {
+          "friends"=>@user.friends.to_json,
+          "requested_friends"=>@user.requested_friends.to_json,
+          "pending_friends"=>@user.pending_friends.to_json
+        }
+      }
     end
   end
   

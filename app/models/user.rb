@@ -52,4 +52,8 @@ class User < ActiveRecord::Base
     roles.include?(role.to_s)
   end
   
+  def as_json(options)
+    super(:only => [:id,:firstName,:lastName,:city,:gender])
+  end
+  
 end

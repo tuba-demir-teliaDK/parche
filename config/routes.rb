@@ -29,7 +29,7 @@ Cheepar::Application.routes.draw do
     end
   end
 
-  match 'vp_v/:venue_id' => 'venue_products#vplist'
+  match 'vp_v/:fs_venue_id' => 'venue_products#vplist'
   match 'vp_p/:id' => 'venue_products#vplist'
   match 'logout' => 'devise/session#destroy'
   

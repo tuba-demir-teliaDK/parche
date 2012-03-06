@@ -10,7 +10,7 @@ class VenueProduct < ActiveRecord::Base
   attr_accessor :most_checkined_item, :last_checkined_item, :venue_name
   
   def venue_name
-    get_venue_name(self.venue_id)
+    get_venue_name(self.fs_venue_id)
   end
   
    

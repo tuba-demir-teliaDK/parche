@@ -1,7 +1,7 @@
 module ApplicationHelper
   
-  def get_venue_name(venue_id)
-    client.venue(venue_id).name
+  def get_venue_name(fs_venue_id)
+    client.venue(fs_venue_id).name
   end
   
   def client

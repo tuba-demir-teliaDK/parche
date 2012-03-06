@@ -3,8 +3,8 @@ class VenueProductsController < ApplicationController
   # GET /venue_products.json
   def index
     
-    if !params[:venue_id].nil?
-      @venue_products = VenueProduct.where("venue_id = ?", params[:venue_id])
+    if !params[:fs_venue_id].nil?
+      @venue_products = VenueProduct.where("fs_venue_id = ?", params[:fs_venue_id])
     else
       @venue_products = VenueProduct.all
     end
@@ -89,8 +89,8 @@ class VenueProductsController < ApplicationController
   
   def vplist
     
-    if !params[:venue_id].nil?
-      @venue_products= VenueProduct.all(:include=> :product, :conditions=> {:venue_id => params[:venue_id]})
+    if !params[:fs_venue_id].nil?
+      @venue_products= VenueProduct.all(:include=> :product, :conditions=> {:fs_venue_id => params[:fs_venue_id]})
     elsif !params[:id].nil?
       #@product= Product.find(VenueProduct.find(params[:id]).product.id)
       @venue_products= VenueProduct.all(:include=> :product, :conditions=> {:products=> {:id => params[:id]}})
@@ -112,7 +112,7 @@ class VenueProductsController < ApplicationController
             :except => [:most_checkined_item_id, :last_checkined_item_id, :verified_item_id]
             ) 
         }
-      elsif !params[:venue_id].nil?
+      elsif !params[:fs_venue_id].nil?
           @vName=@venue_products.first.venue_name
           format.json { 
           render :json => @venue_products.to_json(:include => {

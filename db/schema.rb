@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305181628) do
+ActiveRecord::Schema.define(:version => 20120306135604) do
 
   create_table "books", :force => true do |t|
     t.string   "name"
@@ -105,9 +105,13 @@ ActiveRecord::Schema.define(:version => 20120305181628) do
     t.integer  "most_checkined_item_id"
     t.integer  "last_checkined_item_id"
     t.integer  "verified_item_id"
+    t.string   "fs_venue_id"
   end
 
-  add_index "venue_products", ["venue_id", "product_id"], :name => "index_venue_products_on_venue_id_and_product_id", :unique => true
+  add_index "venue_products", ["fs_venue_id", "product_id"], :name => "index_venue_products_on_fs_venue_id_and_product_id", :unique => true
+  add_index "venue_products", ["fs_venue_id"], :name => "index_venue_products_on_fs_venue_id"
+  add_index "venue_products", ["product_id"], :name => "index_venue_products_on_product_id"
+  add_index "venue_products", ["venue_id"], :name => "index_venue_products_on_venue_id"
 
   create_table "venues", :force => true do |t|
     t.string   "name"
