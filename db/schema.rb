@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307093810) do
+ActiveRecord::Schema.define(:version => 20120307142600) do
 
   create_table "checkins", :force => true do |t|
     t.integer  "user_id"
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(:version => 20120307093810) do
   create_table "items", :force => true do |t|
     t.integer  "venue_product_id"
     t.decimal  "price",            :precision => 10, :scale => 0
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
-    t.integer  "checkin_count"
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
+    t.integer  "checkin_count",                                   :default => 0
   end
 
   add_index "items", ["venue_product_id", "price"], :name => "index_items_on_venue_product_id_and_price", :unique => true
@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(:version => 20120307093810) do
   create_table "venue_products", :force => true do |t|
     t.string   "venue_id"
     t.integer  "product_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
-    t.integer  "checkin_count"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "checkin_count",          :default => 0
     t.integer  "most_checkined_item_id"
     t.integer  "last_checkined_item_id"
     t.integer  "verified_item_id"

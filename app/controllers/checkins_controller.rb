@@ -58,8 +58,8 @@ class CheckinsController < ApplicationController
     if @item 
       Item.increment_counter(:checkin_count,@item.id)
       @venue_product=VenueProduct.find(@item.venue_product.id)
-      VenueProduct.increment_counter(:checkin_count,@item.venue_product.id)
-      @venue_product.update_attribute(:last_checkined_item_id,@item.id)
+      #VenueProduct.increment_counter(:checkin_count,@item.venue_product.id)
+      @venue_product.update_attributes(:last_checkined_item_id=>@item.id,:checkin_count=>(@venue_product.checkin_count).to_i + 1)
     end
 
     respond_to do |format|

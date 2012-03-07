@@ -2,6 +2,8 @@ module ApplicationHelper
   
   def get_venue_name(fs_venue_id)
     client.venue(fs_venue_id).name
+  rescue
+    'connection timeout'
   end
   
   def client
