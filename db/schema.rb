@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20120307093810) do
 
   create_table "checkins", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "item_id"
   end
 
@@ -26,18 +26,18 @@ ActiveRecord::Schema.define(:version => 20120307093810) do
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.integer  "status",     :limit => 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "friendships", ["user_id", "friend_id", "status"], :name => "index_friendships_on_user_id_and_friend_id_and_status", :unique => true
 
   create_table "items", :force => true do |t|
     t.integer  "venue_product_id"
-    t.decimal  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.decimal  "price",            :precision => 10, :scale => 0
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.integer  "checkin_count"
   end
 
@@ -48,24 +48,12 @@ ActiveRecord::Schema.define(:version => 20120307093810) do
     t.string   "name"
     t.string   "description"
     t.float    "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "products", ["description"], :name => "index_products_on_description"
   add_index "products", ["name"], :name => "index_products_on_name"
-
-  create_table "relationships", :force => true do |t|
-    t.integer  "follower_id"
-    t.integer  "followed_id"
-    t.integer  "confirmed"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
-  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -99,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20120307093810) do
   create_table "venue_products", :force => true do |t|
     t.string   "venue_id"
     t.integer  "product_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.integer  "checkin_count"
     t.integer  "most_checkined_item_id"
     t.integer  "last_checkined_item_id"
@@ -115,8 +103,8 @@ ActiveRecord::Schema.define(:version => 20120307093810) do
 
   create_table "venues", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "product_count"
     t.string   "fs_venue_id"
   end
