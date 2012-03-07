@@ -13,7 +13,7 @@
             <a class="brand" href="#">
               Cheepar
             </a>
-        
+        	<%- if !current_user.nil? %>
             <ul class="nav">
               	<li class="active"><a href="<%= root_url%>">Home</a></li>
 				<li><%=link_to "Venues", venues_path %></li>
@@ -38,6 +38,7 @@
                 </ul>
               </li>
             </ul>
+            <%- end -%>
         </div>
       </div>
 	</div>
