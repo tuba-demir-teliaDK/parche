@@ -11,14 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306135604) do
-
-  create_table "books", :force => true do |t|
-    t.string   "name"
-    t.integer  "page"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120307093810) do
 
   create_table "checkins", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20120306135604) do
     t.datetime "updated_at"
     t.integer  "item_id"
   end
+
+  add_index "checkins", ["item_id"], :name => "index_checkins_on_item_id"
+  add_index "checkins", ["user_id"], :name => "index_checkins_on_user_id"
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -46,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20120306135604) do
   end
 
   add_index "items", ["venue_product_id", "price"], :name => "index_items_on_venue_product_id_and_price", :unique => true
+  add_index "items", ["venue_product_id"], :name => "index_items_on_venue_product_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -54,6 +51,9 @@ ActiveRecord::Schema.define(:version => 20120306135604) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "products", ["description"], :name => "index_products_on_description"
+  add_index "products", ["name"], :name => "index_products_on_name"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
@@ -115,12 +115,12 @@ ActiveRecord::Schema.define(:version => 20120306135604) do
 
   create_table "venues", :force => true do |t|
     t.string   "name"
-    t.string   "description"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "product_count"
+    t.string   "fs_venue_id"
   end
+
+  add_index "venues", ["fs_venue_id"], :name => "index_venues_on_fs_venue_id"
 
 end
