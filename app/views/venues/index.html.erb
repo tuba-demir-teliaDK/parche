@@ -3,10 +3,7 @@
 <table class="table table-striped table-condensed">
   <tr>
     <th>Name</th>
-    <th>Description</th>
-    <th>Phone</th>
-    <th>Email</th>
-    <th>Address</th>
+    <th>4sq Venue ID</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,10 +12,7 @@
 <% @venues.each do |venue| %>
   <tr>
     <td><%= venue.name %></td>
-    <td><%= venue.description %></td>
-    <td><%= venue.phone %></td>
-    <td><%= venue.email %></td>
-    <td><%= venue.address %></td>
+    <td><%= venue.fs_venue_id%></td>
     <td><%= link_to 'Show', venue %></td>
     <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
     <td><%= link_to 'Destroy', venue, confirm: 'Are you sure?', method: :delete %></td>
