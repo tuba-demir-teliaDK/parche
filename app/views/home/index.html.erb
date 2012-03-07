@@ -1,8 +1,10 @@
 <div class="hero-unit">
   <h1>cheepar.admin</h1>
-  <p>logged as user:  <%= current_user.firstName %> <%=  current_user.lastName %>(<%= current_user.email %>)</p>
-  <p>last signed in at <%= current_user.last_sign_in_at %></p>
-  <p>last signed in from <%= current_user.last_sign_in_ip %></p>
+  <%- if !current_user.nil? -%>
+	  <p>logged as user:  <%= current_user.firstName %> <%=  current_user.lastName %>(<%= current_user.email %>) </p>
+	  <p>last signed in at <%= current_user.last_sign_in_at %></p>
+	  <p>last signed in from <%= current_user.last_sign_in_ip %></p>
+  <%- end -%>
   <p>
     <a class="btn btn-primary btn-large">edit profile</a>
     <%= link_to "sign out", destroy_user_session_path, :method => :delete, :class=>'btn btn-large' %>
