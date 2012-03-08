@@ -28,7 +28,17 @@ class CheckinsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @checkin }
+       format.json { 
+         render json: @checkin.to_json(
+         :only=>[:created_at],
+         :include=>{
+           :comments=>{
+             :include=>{:user=>{:only=>[:firstName,:lastName]}},
+             :only=>[:comments,:created_at]
+           }
+         }
+         )
+      }
     end
   end
 
@@ -36,6 +46,7 @@ class CheckinsController < ApplicationController
   # GET /checkins/new.json
   def new
     @checkin = Checkin.new
+    @comments=@checkin.comments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,7 +59,7 @@ class CheckinsController < ApplicationController
     @checkin = Checkin.find(params[:id])
   end
 
-  # POST /checkins
+  # POST /checkins  
   # POST /checkins.json
   def create
     @checkin = Checkin.new(params[:checkin])    

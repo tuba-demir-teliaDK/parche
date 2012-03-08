@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308103855) do
+ActiveRecord::Schema.define(:version => 20120308114808) do
 
   create_table "checkins", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 20120308103855) do
 
   add_index "checkins", ["item_id"], :name => "index_checkins_on_item_id"
   add_index "checkins", ["user_id"], :name => "index_checkins_on_user_id"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "checkin_id"
+    t.integer  "user_id"
+    t.text     "comments"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"

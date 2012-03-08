@@ -5,6 +5,12 @@
   <%= @checkin.user_id %>
   <b>Item:</b>
   <%= @checkin.item_id %>
+  <% @checkin.comments.each do |comment| %>
+	<div class="field">
+		<b><%= comment.user.firstName if !comment.user.nil? %></b> - <%= comment.created_at %><br />
+		<%= comment.comments %><br />
+	</div>
+  <% end -%>
 </p>
 
 

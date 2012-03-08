@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
   #relations      
   has_many :checkins
-  has_many :items, :through => :items 
+  has_many :items, :through => :items
+  has_many :comments
   
   #friendship relations
   #0-requested,1-pending,2-accepted          
