@@ -46,9 +46,13 @@ class VenueProductsController < ApplicationController
   # POST /venue_products.json
   def create
     @venue_product = VenueProduct.new(params[:venue_product])
+    @venue = Venue.find_by_fs_venue_id(@venue_product.fs_venue_id)
+    @venue.product_count=(@venue.product_count).to_i + 1
+    #@venue.update_attribute(:product_count,(@venue.product_count).to_i + 1)
 
     respond_to do |format|
-      if @venue_product.save
+      if @venue_product.save && @venue.save
+        
         format.html { redirect_to @venue_product, notice: 'Venue product was successfully created.' }
         format.json { render json: @venue_product, status: :created, location: @venue_product }
       else
@@ -79,6 +83,9 @@ class VenueProductsController < ApplicationController
   def destroy
     @venue_product = VenueProduct.find(params[:id])
     @venue_product.destroy
+    
+    @venue = Venue.find_by_fs_venue_id(@venue_product.fs_venue_id)
+    @venue.update_attribute(:product_count,(@venue.product_count).to_i - 1)
 
     respond_to do |format|
       format.html { redirect_to venue_products_url }

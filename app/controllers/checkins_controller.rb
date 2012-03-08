@@ -51,19 +51,16 @@ class CheckinsController < ApplicationController
   # POST /checkins
   # POST /checkins.json
   def create
-    @checkin = Checkin.new(params[:checkin])
-    
+    @checkin = Checkin.new(params[:checkin])    
     @item = Item.find(@checkin.item.id)
+    @venue_product=VenueProduct.find(@item.venue_product.id) 
     
-    if @item 
-      Item.increment_counter(:checkin_count,@item.id)
-      @venue_product=VenueProduct.find(@item.venue_product.id)
-      #VenueProduct.increment_counter(:checkin_count,@item.venue_product.id)
-      @venue_product.update_attributes(:last_checkined_item_id=>@item.id,:checkin_count=>(@venue_product.checkin_count).to_i + 1)
-    end
+    @item.checkin_count= (@item.checkin_count).to_i + 1
+    @venue_product.last_checkined_item_id=@item.id
+    @venue_product.checkin_count=(@venue_product.checkin_count).to_i + 1
 
     respond_to do |format|
-      if @checkin.save
+      if @checkin.save && @item.save && @venue_product.save
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
       else

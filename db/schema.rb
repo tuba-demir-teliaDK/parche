@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307142600) do
+ActiveRecord::Schema.define(:version => 20120308103855) do
 
   create_table "checkins", :force => true do |t|
     t.integer  "user_id"
@@ -103,9 +103,9 @@ ActiveRecord::Schema.define(:version => 20120307142600) do
 
   create_table "venues", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "product_count"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "product_count", :default => 0
     t.string   "fs_venue_id"
   end
 
