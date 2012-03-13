@@ -17,8 +17,8 @@
     <td><%= friendship.user_id %></td>
     <td><%= friendship.friend_id %></td>
     <td><%= friendship.status %></td>
-    <td><%= friendship.user.firstName %></td>
-    <td><%= friendship.friend.firstName %></td>
+    <td><%= friendship.user.profile.first_name %></td>
+    <td><%= friendship.friend.profile.first_name %></td>
     <td><%= link_to 'Show', friendship %></td>
     <td><%= link_to 'Edit', edit_friendship_path(friendship) %></td>
     <td><%= link_to 'Destroy', friendship, confirm: 'Are you sure?', method: :delete %></td>

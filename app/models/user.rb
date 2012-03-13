@@ -10,25 +10,22 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token!   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :id, :email, :password, :password_confirmation, :remember_me, :firstName, :lastName, :authentication_token
+  attr_accessible :id, :email, :password, :password_confirmation, :remember_me, :authentication_token
   
   attr_protected :roles_mask
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
      
-  validates :firstName,  :presence => true, 
-                         :length   => { :maximum => 50 }  
-                                      
-  validates :lastName,  :presence => true, 
-                        :length   => { :maximum => 50 }
-                    
   validates :email, :presence => true,
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
-  #relations      
+  #relations    
+  has_one  :profile  
   has_many :checkins
   has_many :items, :through => :items
   has_many :comments
+  
+  accepts_nested_attributes_for :profile
   
   #friendship relations
   #0-requested,1-pending,2-accepted          
@@ -54,7 +51,7 @@ class User < ActiveRecord::Base
   end
   
   def as_json(options)
-    super(:only => [:id,:firstName,:lastName,:city,:gender])
+    super(:only => [:id])
   end
   
 end

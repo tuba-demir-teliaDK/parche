@@ -3,7 +3,7 @@ class CheckinsController < ApplicationController
   # GET /checkins
   # GET /checkins.json
   def index
-    @checkins = Checkin.all
+    #@checkins = Checkin.all
     
     if params[:user_id] 
       @user= User.find(params[:user_id])
@@ -13,6 +13,13 @@ class CheckinsController < ApplicationController
     if params[:item_id] 
       @item= Item.find(params[:item_id])
       @checkins = @item.checkins
+    end
+    
+    if params[:venue_product_id] 
+      #@item= Item.find(params[:item_id])
+      sql="select c.id, c.created_at, p.first_name, i.price from checkins c, items i, venue_products v, users u,profiles p
+        where c.user_id=u.id and p.user_id=u.id and c.item_id=i.id and i.venue_product_id=v.id and venue_product_id = ?"
+      @checkins = Checkin.find_by_sql([sql,params[:venue_product_id]])
     end
     
     respond_to do |format|
@@ -25,20 +32,41 @@ class CheckinsController < ApplicationController
   # GET /checkins/1.json
   def show
     @checkin = Checkin.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-       format.json { 
-         render json: @checkin.to_json(
-         :only=>[:created_at],
-         :include=>{
-           :comments=>{
-             :include=>{:user=>{:only=>[:firstName,:lastName]}},
-             :only=>[:comments,:created_at]
+    param=2
+    
+    if param==1 
+      some_objects = []
+      query="select "
+      #checkin list query="select u.firstname , u.lastName, c.created_at, i.price, v.`fs_venue_id` , p.name from checkins c, items i, venue_products v, products p, users u where c.user_id=u.id and c.item_id=i.id and i.venue_product_id=v.id and v.product_id=p.id and u.id=1"
+      mysql_res = ActiveRecord::Base.connection.execute(query)
+      
+      mysql_res.each do |res| 
+        some_objects << res 
+      end
+      render json: some_objects
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { 
+           render json: @checkin.to_json(
+           :only=>[:created_at],
+           :include=>{
+             :item=>{
+               :only=>[:price],
+               :include=>{:venue_product=>{:only=>[:fs_venue_id]}}},
+             :comments=>{
+               :only=>[:comments,:created_at],
+               :include=>{
+                 :user=>{
+                   :only=>[:id],
+                   :include=>{:profile=>{:only=>[:first_name,:last_name]}}
+                 }
+               }
+             }
            }
-         }
-         )
-      }
+          )
+        }
+      end
     end
   end
 
@@ -62,7 +90,10 @@ class CheckinsController < ApplicationController
   # POST /checkins  
   # POST /checkins.json
   def create
+    @checkin.comments.build
     @checkin = Checkin.new(params[:checkin])    
+    puts @checkin.comments
+    
     @item = Item.find(@checkin.item.id)
     @venue_product=VenueProduct.find(@item.venue_product.id) 
     

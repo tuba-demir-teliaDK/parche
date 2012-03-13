@@ -1,5 +1,7 @@
 Cheepar::Application.routes.draw do
     
+  resources :profiles
+
   resources :comments
 
   devise_for :users,:controllers => {:sessions => "sessions",:registrations => "registrations"} do
@@ -23,7 +25,7 @@ Cheepar::Application.routes.draw do
   end
 
   resources :venue_products do
-   
+   resources :checkins
     member do
       get 'vplist'
     end

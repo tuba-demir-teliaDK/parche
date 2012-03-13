@@ -7,7 +7,7 @@
   <%= @checkin.item_id %>
   <% @checkin.comments.each do |comment| %>
 	<div class="field">
-		<b><%= comment.user.firstName if !comment.user.nil? %></b> - <%= comment.created_at %><br />
+		<b><%= comment.user.profile.first_name if !comment.user.nil? && !comment.user.profile.nil? %></b> - <%= comment.created_at %><br />
 		<%= comment.comments %><br />
 	</div>
   <% end -%>

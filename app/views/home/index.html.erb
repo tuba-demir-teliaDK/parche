@@ -1,7 +1,7 @@
 <div class="hero-unit">
   <h1>cheepar.admin</h1>
   <%- if !current_user.nil? -%>
-	  <p>logged as user:  <%= current_user.firstName %> <%=  current_user.lastName %>(<%= current_user.email %>) </p>
+	  <p>logged as user:  <%= current_user.profile.first_name %> <%=  current_user.profile.last_name %>(<%= current_user.email %>) </p>
 	  <p>last signed in at <%= current_user.last_sign_in_at %></p>
 	  <p>last signed in from <%= current_user.last_sign_in_ip %></p>
   <%- end -%>

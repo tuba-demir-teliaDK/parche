@@ -1,8 +1,8 @@
 <% unless @user.friends.empty? %>
 	<% @user.friends.each do |u| %>
-	<%= u.firstName %> <%= u.lastName %>
+	<%= u.profile.first_name %> <%= u.profile.last_name %>
 		<%= link_to "sss", user_path(u.id) %>
-		<%= u.firstName %> <%= u.lastName %>
+		<%= u.profile.first_name %> <%= u.profile.last_name %>
 		Since <%= u.created_at.to_s(:long) %>
 	<% end %>
 <% else %>
