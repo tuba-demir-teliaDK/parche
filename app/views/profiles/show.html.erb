@@ -25,6 +25,10 @@
   <%= @profile.city_id %>
 </p>
 
+<%= image_tag @profile.picture.url %>
+<%= image_tag @profile.picture.url(:medium) %>
+<%= image_tag @profile.picture.url(:thumb) %>
+
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>

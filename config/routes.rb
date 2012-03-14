@@ -4,11 +4,11 @@ Cheepar::Application.routes.draw do
 
   resources :comments
 
-  devise_for :users,:controllers => {:sessions => "sessions",:registrations => "registrations"} do
-    delete "/logout" => "devise/sessions#destroy"
-  end
+  devise_for :users,:controllers => {:sessions => "sessions",:registrations => "registrations"} 
   
-  resources :users
+  resources :users do
+    resources :profiles
+  end
   
   resources :venues
 
