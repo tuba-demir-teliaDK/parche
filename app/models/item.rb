@@ -5,4 +5,6 @@ class Item < ActiveRecord::Base
   validates_presence_of :venue_product
   validates_uniqueness_of :venue_product_id, :scope => [:price]
   
+  scope :sorted, order("checkin_count desc")
+
 end

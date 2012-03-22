@@ -1,0 +1,25 @@
+<h1>Listing category_products</h1>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Product</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @category_products.each do |category_product| %>
+  <tr>
+    <td><%= category_product.category_id %></td>
+    <td><%= category_product.product_id %></td>
+    <td><%= link_to 'Show', category_product %></td>
+    <td><%= link_to 'Edit', edit_category_product_path(category_product) %></td>
+    <td><%= link_to 'Destroy', category_product, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Category product', new_category_product_path %>

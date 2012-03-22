@@ -100,16 +100,19 @@ class CheckinsController < ApplicationController
     @item.checkin_count= (@item.checkin_count).to_i + 1
     @venue_product.last_checkined_item_id=@item.id
     @venue_product.checkin_count=(@venue_product.checkin_count).to_i + 1
-
+    
     respond_to do |format|
-      if @checkin.save && @item.save && @venue_product.save
+      ActiveRecord::Base.transaction do
+        @checkin.save!
+        @item.save!
+        @venue_product.save!
         format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
         format.json { render json: @checkin, status: :created, location: @checkin }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @checkin.errors, status: :unprocessable_entity }
-      end
+      end      
     end
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved
+      format.html { render action: "new" }
+      format.json { render json: @checkin.errors, status: :unprocessable_entity }
   end
 
   # PUT /checkins/1

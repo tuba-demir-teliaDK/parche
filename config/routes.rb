@@ -1,5 +1,9 @@
 Cheepar::Application.routes.draw do
     
+  resources :category_products
+
+  resources :categories
+
   resources :profiles
 
   resources :comments
