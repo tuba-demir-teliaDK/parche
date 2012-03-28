@@ -92,7 +92,7 @@ class CheckinsController < ApplicationController
   def create
     @checkin.comments.build
     @checkin = Checkin.new(params[:checkin])    
-    puts @checkin.comments
+    #puts @checkin.comments
     
     @item = Item.find(@checkin.item.id)
     @venue_product=VenueProduct.find(@item.venue_product.id) 

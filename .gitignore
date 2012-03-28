@@ -6,3 +6,5 @@ tmp/
 Gemfile.lock
 db/development.sqlite3
 
+public/system/pictures
+config/database.yml

@@ -15,7 +15,6 @@
             </a>
         	<%- if !current_user.nil? %>
             <ul class="nav">
-              	<li class="active"><a href="<%= root_url%>">Home</a></li>
               	<li class="dropdown"> 
 					<a href="#"
                       class="dropdown-toggle"
@@ -24,7 +23,7 @@
                       <b class="caret"></b>
                 	</a>
                 	<ul class="dropdown-menu">
-						<li><%=link_to "Users", checkins_path %></li>
+						<li><%=link_to "Users", users_path %></li>
 						<li><%=link_to "Followups", user_followups_path %></li>
 						<li><%=link_to "Profiles", profiles_path %></li>
 						<li><%=link_to "Friendships", friendships_path %></li>
