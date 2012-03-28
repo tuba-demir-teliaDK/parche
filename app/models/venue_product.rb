@@ -21,6 +21,14 @@ class VenueProduct < ActiveRecord::Base
   def most_checkined_item
      items.sorted.first
   end
+  
+  def verified
+    if !self.verified_item.nil?
+      self.verified_item
+    else
+      self.most_checkined_item
+    end
+  end
    
   # def verified_item
     # items.

@@ -1,0 +1,37 @@
+<%= form_for(@user_followup) do |f| %>
+  <% if @user_followup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_followup.errors.count, "error") %> prohibited this user_followup from being saved:</h2>
+
+      <ul>
+      <% @user_followup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :fs_venue_id %><br />
+    <%= f.text_field :fs_venue_id %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.number_field :category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :product_id %><br />
+    <%= f.number_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

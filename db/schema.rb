@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321191055) do
+ActiveRecord::Schema.define(:version => 20120328131923) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
-    t.integer  "active"
     t.integer  "display_order"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "active",        :default => true
   end
 
   create_table "category_products", :force => true do |t|
@@ -61,9 +61,10 @@ ActiveRecord::Schema.define(:version => 20120321191055) do
   create_table "items", :force => true do |t|
     t.integer  "venue_product_id"
     t.decimal  "price",            :precision => 10, :scale => 0
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
     t.integer  "checkin_count",                                   :default => 0
+    t.boolean  "active",                                          :default => true
   end
 
   add_index "items", ["venue_product_id", "price"], :name => "index_items_on_venue_product_id_and_price", :unique => true
@@ -73,8 +74,9 @@ ActiveRecord::Schema.define(:version => 20120321191055) do
     t.string   "name"
     t.string   "description"
     t.float    "price"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "active",      :default => true
   end
 
   add_index "products", ["description"], :name => "index_products_on_description"
@@ -92,6 +94,16 @@ ActiveRecord::Schema.define(:version => 20120321191055) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+  end
+
+  create_table "user_followups", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "fs_venue_id"
+    t.integer  "category_id"
+    t.integer  "product_id"
+    t.boolean  "active"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -122,13 +134,17 @@ ActiveRecord::Schema.define(:version => 20120321191055) do
   create_table "venue_products", :force => true do |t|
     t.string   "venue_id"
     t.integer  "product_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.integer  "checkin_count",          :default => 0
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
+    t.decimal  "price",                  :precision => 10, :scale => 0
+    t.decimal  "last_checkin_price",     :precision => 10, :scale => 0
+    t.decimal  "most_checkin_price",     :precision => 10, :scale => 0
+    t.integer  "checkin_count",                                         :default => 0
     t.integer  "most_checkined_item_id"
     t.integer  "last_checkined_item_id"
     t.integer  "verified_item_id"
     t.string   "fs_venue_id"
+    t.boolean  "active",                                                :default => true
   end
 
   add_index "venue_products", ["fs_venue_id", "product_id"], :name => "index_venue_products_on_fs_venue_id_and_product_id", :unique => true

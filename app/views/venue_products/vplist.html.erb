@@ -20,9 +20,9 @@
 	<%- else -%>
     	<td><%= get_venue_name(venue_product.fs_venue_id) %></td>	
     <%- end -%>
-    <td><%= venue_product.verified_item.price if !venue_product.verified_item.nil?%></td>
-    <td><%= venue_product.last_checkined_item.price if !venue_product.last_checkined_item.nil?  %></td>
-    <td><%= venue_product.most_checkined_item.price if !venue_product.most_checkined_item.nil? %></td>
+    <td><%= venue_product.verified.price %></td>
+    <td><%= venue_product.last_checkined_item.price  %></td>
+    <td><%= venue_product.most_checkined_item.price  %></td>
     <td><%= venue_product.items.size %></td>
     <td><%= venue_product.checkin_count %></td>    
   </tr>

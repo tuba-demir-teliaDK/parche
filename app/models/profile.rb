@@ -1,7 +1,7 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
 
-  has_attached_file :picture, :styles=>{:medium =>["250x250>", :jpg], :thumb => ["50x50>", :jpg]}
+  has_attached_file :picture, :styles=>{:medium =>["250x250>", :jpg], :thumb => ["60x60>", :jpg]}
   validates :first_name,  :presence => true,
                          :length   => { :maximum => 50 }
 

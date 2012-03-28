@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   
   #authorizations
   ROLES = %w[admin moderator author banned]
+  
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end

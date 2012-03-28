@@ -1,0 +1,31 @@
+<h1>Listing user_followups</h1>
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>User</th>
+    <th>Fs venue</th>
+    <th>Category</th>
+    <th>Product</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_followups.each do |user_followup| %>
+  <tr>
+    <td><%= user_followup.user_id %></td>
+    <td><%= user_followup.fs_venue_id %></td>
+    <td><%= user_followup.category_id %></td>
+    <td><%= user_followup.product_id %></td>
+    <td><%= user_followup.active %></td>
+    <td><%= link_to 'Show', user_followup %></td>
+    <td><%= link_to 'Edit', edit_user_followup_path(user_followup) %></td>
+    <td><%= link_to 'Destroy', user_followup, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User followup', new_user_followup_path %>

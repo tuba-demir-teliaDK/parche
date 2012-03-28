@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @user_followup.user_id %>
+</p>
+
+<p>
+  <b>Fs venue:</b>
+  <%= @user_followup.fs_venue_id %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @user_followup.category_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%= @user_followup.product_id %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @user_followup.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_followup_path(@user_followup) %> |
+<%= link_to 'Back', user_followups_path %>

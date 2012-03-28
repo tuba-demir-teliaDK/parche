@@ -1,5 +1,7 @@
 Cheepar::Application.routes.draw do
     
+  resources :user_followups
+
   resources :category_products
 
   resources :categories

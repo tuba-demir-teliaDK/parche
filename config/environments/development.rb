@@ -30,7 +30,6 @@ Cheepar::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   
-  Paperclip.options[:command_path] = 'D:\dev\im'
-  Paperclip.options[:swallow_stderr] = false
+  Paperclip.options[:command_path] = "/opt/local/bin/"
   
 end

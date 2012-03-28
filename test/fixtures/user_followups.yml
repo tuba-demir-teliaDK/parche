@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  fs_venue_id: MyString
+  category_id: 1
+  product_id: 1
+  active: false
+
+two:
+  user_id: 1
+  fs_venue_id: MyString
+  category_id: 1
+  product_id: 1
+  active: false
