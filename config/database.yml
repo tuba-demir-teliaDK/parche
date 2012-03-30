@@ -14,7 +14,7 @@ development:
   encoding: utf8
   database: cheepar
   username: root
-  password:
+  password: Hsyn12
   socket: /tmp/mysql.sock
   host: localhost
 
