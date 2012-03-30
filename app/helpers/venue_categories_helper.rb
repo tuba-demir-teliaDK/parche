@@ -1,0 +1,2 @@
+module VenueCategoriesHelper
+end

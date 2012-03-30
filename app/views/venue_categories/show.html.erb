@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Fs category:</b>
+  <%= @venue_category.fs_category_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @venue_category.name %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @venue_category.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_venue_category_path(@venue_category) %> |
+<%= link_to 'Back', venue_categories_path %>

@@ -1,0 +1,31 @@
+<h1>Listing venue_categories</h1>
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>ID</th>
+    <th>Fs category</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Parent</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @venue_categories.each do |venue_category| %>
+  <tr>
+    <td><%= venue_category.id %></td>
+    <td><%= venue_category.fs_category_id %></td>
+    <td><%= venue_category.name %></td>
+    <td><%= venue_category.status %></td>
+    <td><%= venue_category.parent_id %></td>
+    <td><%= link_to 'Show', venue_category %></td>
+    <td><%= link_to 'Edit', edit_venue_category_path(venue_category) %></td>
+    <td><%= link_to 'Destroy', venue_category, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Venue category', new_venue_category_path %>

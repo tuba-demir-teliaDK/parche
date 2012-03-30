@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fs_category_id: MyString
+  name: MyString
+  status: 1
+
+two:
+  fs_category_id: MyString
+  name: MyString
+  status: 1

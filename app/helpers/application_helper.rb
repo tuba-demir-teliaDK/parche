@@ -5,6 +5,7 @@ module ApplicationHelper
   rescue
     'connection timeout'
   end
+
   
   def client
     Foursquare2::Client.new(:client_id => 'QHE2JQVNOB5GWVUAGPZNAWURCQYBBYSSLY0EAVMUVXPDCUNM', :client_secret => '1LLRY4CV4TEHGRNIFRBOB23ZFUWBOEHZ2ORIOSLRQ1TGKYBS',:ssl => { :verify => false})   

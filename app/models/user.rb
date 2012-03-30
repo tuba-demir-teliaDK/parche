@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   #relations    
   has_one  :profile  
   has_many :checkins
-  has_many :items, :through => :items
+  has_many :items
   has_many :comments
   
   accepts_nested_attributes_for :profile

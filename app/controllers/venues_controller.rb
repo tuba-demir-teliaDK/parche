@@ -1,4 +1,6 @@
+include ApplicationHelper
 class VenuesController < ApplicationController
+  
   # GET /venues
   # GET /venues.json
   def index
@@ -80,4 +82,22 @@ class VenuesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  
+  #GET/40.2/41.2.JSON
+  def get_4sq_venues(options={})
+    
+    ll= params[:lat] + "," + params[:lng] 
+    venues=client.search_venues(:ll => ll)
+    puts venues
+    #venue_array=Array.new
+    #venues["groups"][0]["items"].each do |item|
+      # venue_array << item.name
+    #end
+    
+    respond_to do |format|
+      format.json { render json: venues }
+    end
+  end
+  
 end
