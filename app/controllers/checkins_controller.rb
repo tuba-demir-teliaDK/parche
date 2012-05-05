@@ -90,9 +90,14 @@ class CheckinsController < ApplicationController
   # POST /checkins  
   # POST /checkins.json
   def create
+    @checkin = Checkin.new(params[:checkin]) 
     @checkin.comments.build
-    @checkin = Checkin.new(params[:checkin])    
-    #puts @checkin.comments
+
+    @user = User.find(current_user)
+    
+    if @checkin.user_id.nil?
+      @checkin.user_id=@user.id
+    end
     
     @item = Item.find(@checkin.item.id)
     @venue_product=VenueProduct.find(@item.venue_product.id) 

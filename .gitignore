@@ -10,3 +10,4 @@ public/system/pictures
 config/database.yml
 .idea/
 .DS_Store
+public/system/profiles_images
