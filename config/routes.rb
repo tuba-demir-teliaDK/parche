@@ -45,6 +45,7 @@ Cheepar::Application.routes.draw do
 
   match 'vp_v/:fs_venue_id' => 'venue_products#vplist'
   match 'vp_p/:id' => 'venue_products#vplist'
+  match 'latest_cheepins' => 'checkins#latest_cheepins'
   match 'logout' => 'devise/session#destroy'
   match 'v4sq/:lat/:lng(/:range)', :to => 'venues#get_4sq_venues', :constraints => {:lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ , :range => /\d+/}
   match 'uc' => 'venue_categories#update_categories'

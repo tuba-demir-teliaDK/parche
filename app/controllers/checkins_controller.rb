@@ -143,4 +143,20 @@ class CheckinsController < ApplicationController
       format.js   { render :nothing => true } 
     end
   end
+  
+  def latest_cheepins
+    sql="select c.id cheepin_id,c.created_at cheepin_date,i.price price,vp.checkin_count cheepin_count,p.name, pr.first_name, pr.last_name " +
+        #",(select price from items where item_id=vp.most_checkined_item_id) most_cheepined_price, "+
+        #"(select price from items where item_id=vp.last_checkined_item_id) last_cheepined_price, "+
+        #"(select price from items where item_id=vp.verified_item_id) verified_price "+
+        "from checkins c, items i, venue_products vp, products p, users u, profiles pr where "+
+        "c.item_id=i.id and i.venue_product_id=vp.id and vp.product_id=p.id and c.user_id=u.id and pr.user_id=u.id "+
+        "order by c.created_at desc"
+      
+      @checkins = Checkin.find_by_sql(sql)
+      
+      respond_to do |format|
+        format.json { render json: @checkins}
+      end      
+  end
 end
