@@ -5,6 +5,12 @@ module ApplicationHelper
   rescue
     'connection timeout'
   end
+  
+  def get_venue_location(fs_venue_id)
+    client.venue(fs_venue_id).location
+  rescue
+    ''
+  end
 
   
   def client
