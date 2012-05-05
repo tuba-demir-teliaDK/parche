@@ -22,7 +22,7 @@ class LatestController < ApplicationController
   def cheepars
     @user=User.find(current_user)
      sql="select x.cheepin_id,x.cheepin_date, i.price, vp.checkin_count cheepin_count, p.name,
-          pr.first_name,pr.last_name,vp.id venue_product_id, x.user_id,vp.fs_venue_id,p.id product_id, '' venue_name, '' location from (
+          pr.first_name,pr.last_name,vp.id venue_product_id, x.user_id,vp.fs_venue_id,p.id product_id, '' venue_name, '' location, pr.picture_file_name picture_url from (
           select f.friend_id user_id, c.id cheepin_id, max(c.created_at) cheepin_date, c.item_id
           from friendships f, checkins c
           where f.user_id=? and status=2 and c.user_id=f.friend_id  GROUP BY friend_id) x, 
@@ -35,6 +35,7 @@ class LatestController < ApplicationController
      @cheepars.each_with_index do |cheepar,index| 
        @cheepars[index]["venue_name"]=get_venue_name(cheepar.fs_venue_id)
        @cheepars[index]["location"]=get_venue_location(cheepar.fs_venue_id)
+       @cheepars[index]["picture_url"]="/system/profiles_images/"+@cheepars[index]["picture_url"].to_s.gsub(".","_medium.")
      end 
      
      respond_to do |format|
