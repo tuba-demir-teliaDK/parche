@@ -10,8 +10,8 @@ class LatestController < ApplicationController
       @cheepins = Checkin.find_by_sql(sql)
       
       @cheepins.each_with_index do |cheepin,index| 
-        @cheepins[index]["venue_name"]="get_venue_name(cheepin.fs_venue_id)"
-        @cheepins[index]["location"]="get_venue_location(cheepin.fs_venue_id)"
+        @cheepins[index]["venue_name"]=get_venue_name(cheepin.fs_venue_id)
+        @cheepins[index]["location"]=get_venue_location(cheepin.fs_venue_id)
       end        
       
       respond_to do |format|
@@ -33,8 +33,8 @@ class LatestController < ApplicationController
      @cheepars = Checkin.find_by_sql([sql,@user.id])
      
      @cheepars.each_with_index do |cheepar,index| 
-       @cheepars[index]["venue_name"]="get_venue_name(cheepar.fs_venue_id)"
-       @cheepars[index]["location"]="get_venue_location(cheepar.fs_venue_id)"
+       @cheepars[index]["venue_name"]=get_venue_name(cheepar.fs_venue_id)
+       @cheepars[index]["location"]=get_venue_location(cheepar.fs_venue_id)
      end 
      
      respond_to do |format|
