@@ -5,6 +5,8 @@
     <th>Name</th>
     <th>4sq Venue ID</th>
     <th>Product Count</th>
+    <th>Lat</th>
+    <th>Lng</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +17,8 @@
     <td><%= venue.name %></td>
     <td><%= venue.fs_venue_id %></td>
     <td><%= venue.product_count %></td>
+    <td><%= venue.lat %></td>
+    <td><%= venue.lng %></td>
     <td><%= link_to 'Show', venue %></td>
     <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
     <td><%= link_to 'Destroy', venue, confirm: 'Are you sure?', method: :delete %></td>
