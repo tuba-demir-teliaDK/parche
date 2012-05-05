@@ -110,24 +110,26 @@ class VenueProductsController < ApplicationController
         #format.json{render :json =>vplist_as_json(@venue_products,'v')} 
         
         format.json { 
-          render :json => @venue_products.to_json(:include => {
+          render json: @venue_products.to_json(:include => {
               :most_checkined_item => {:only => [:price , :id] },
               :last_checkined_item => {:only => [:price , :id] },
               :verified_item => {:only => [:price , :id] },              
             },
-            :methods => :venue_name,
+            :only=>[:id,:checkin_count,:fs_venue_id],
+            :methods => [:venue_name,:verified],
             :except => [:most_checkined_item_id, :last_checkined_item_id, :verified_item_id]
             ) 
         }
       elsif !params[:fs_venue_id].nil?
           @vName=@venue_products.first.venue_name
           format.json { 
-          render :json => @venue_products.to_json(:include => {
+          render json: @venue_products.to_json(:include => {
             :product => {:only => [:id, :name]},
             :most_checkined_item => {:only => [:price , :id] },
             :last_checkined_item => {:only => [:price , :id] },
-            :verified_item => {:only => [:price , :id] },              
-            }, :except => [:product_id,:most_checkined_item_id, :last_checkined_item_id, :verified_item_id]
+            },
+            :only=>[:id,:checkin_count,:fs_venue_id],
+            :methods => [:verified]
             ) 
         }
       end

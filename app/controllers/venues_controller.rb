@@ -89,7 +89,6 @@ class VenuesController < ApplicationController
     
     ll= params[:lat] + "," + params[:lng] 
     venues=client.search_venues(:ll => ll)
-    puts venues
     #venue_array=Array.new
     #venues["groups"][0]["items"].each do |item|
       # venue_array << item.name

@@ -1,5 +1,5 @@
 class LatestController < ApplicationController
-  
+
   def cheepins
     sql="select c.id cheepin_id,c.created_at cheepin_date,i.price price,vp.checkin_count cheepin_count,p.name"+
         ", pr.first_name, pr.last_name, vp.id venue_product_id, u.id user_id, vp.fs_venue_id, p.id product_id,'' venue_name,'' location " +
