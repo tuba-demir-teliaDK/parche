@@ -144,32 +144,4 @@ class CheckinsController < ApplicationController
     end
   end
   
-  def latest_cheepins
-    sql="select c.id cheepin_id,c.created_at cheepin_date,i.price price,vp.checkin_count cheepin_count,p.name"+
-        ", pr.first_name, pr.last_name, vp.id venue_product_id, u.id user_id, vp.fs_venue_id, p.id product_id,'' venue_name,'' location " +
-        "from checkins c, items i, venue_products vp, products p, users u, profiles pr where "+
-        "c.item_id=i.id and i.venue_product_id=vp.id and vp.product_id=p.id and c.user_id=u.id and pr.user_id=u.id "+
-        "order by c.created_at desc"
-      
-      @checkins = Checkin.find_by_sql(sql)
-      
-      @checkins.each_with_index do |checkin,index| 
-        @checkins[index]["venue_name"]=get_venue_name(checkin.fs_venue_id)
-        @checkins[index]["location"]=get_venue_location(checkin.fs_venue_id)
-      end        
-      
-      respond_to do |format|
-        format.json { render json: @checkins}
-      end      
-  end
-  
-  def cheepars
-    # sql="select c.id cheepin_id,c.created_at cheepin_date,i.price price,vp.checkin_count cheepin_count,p.name, pr.first_name, pr.last_name " +
-     #   "from checkins c, items i, venue_products vp, products p, users u, profiles pr where "+
-      #  "c.item_id=i.id and i.venue_product_id=vp.id and vp.product_id=p.id and c.user_id=u.id and pr.user_id=u.id "+
-       # "and u.id in(select friend_id from friendships where user)"+
-        #"order by c.created_at desc" 
-  end
-  
-  
 end
