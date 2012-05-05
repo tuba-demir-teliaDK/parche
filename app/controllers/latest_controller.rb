@@ -23,7 +23,7 @@ class LatestController < ApplicationController
   def cheepars
     @user=User.find(current_user)
      sql="select x.cheepin_id,x.cheepin_date, i.price, (select count(*) from checkins where user_id=x.user_id) cheepin_count, p.name,
-          pr.first_name,pr.last_name,vp.id venue_product_id, x.user_id,vp.fs_venue_id,p.id product_id,v.name, '' distance,
+          pr.first_name,pr.last_name,vp.id venue_product_id, x.user_id,vp.fs_venue_id,p.id product_id,v.name venue_name, '' distance,
           pr.picture_file_name picture_url from (
           select f.friend_id user_id, c.id cheepin_id, max(c.created_at) cheepin_date, c.item_id
           from friendships f, checkins c

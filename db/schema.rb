@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120330105136) do
+ActiveRecord::Schema.define(:version => 20120505222319) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -165,12 +165,15 @@ ActiveRecord::Schema.define(:version => 20120330105136) do
 
   create_table "venues", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "product_count", :default => 0
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
+    t.integer  "product_count",                                 :default => 0
     t.string   "fs_venue_id"
+    t.decimal  "lat",           :precision => 19, :scale => 15
+    t.decimal  "lng",           :precision => 19, :scale => 15
   end
 
   add_index "venues", ["fs_venue_id"], :name => "index_venues_on_fs_venue_id"
+  add_index "venues", ["lat", "lng"], :name => "index_venues_on_lat_and_lng"
 
 end
