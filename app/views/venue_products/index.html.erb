@@ -21,9 +21,9 @@
     <td><%= venue_product.fs_venue_id %></td>
     <td><%= venue_product.venue_name %></td>	
     <td><%= venue_product.product_id %></td>
-    <td><%= venue_product.verified.price  %></td>
-    <td><%= venue_product.most_checkined_item.price  %></td>
-    <td><%= venue_product.last_checkined_item.price %></td>
+    <td><%= venue_product.verified.price if !venue_product.verified.nil? %></td>
+    <td><%= venue_product.most_checkined_item.price if !venue_product.most_checkined_item.nil?  %></td>
+    <td><%= venue_product.last_checkined_item.price if !venue_product.last_checkined_item.nil? %></td>
     <td><%= venue_product.checkin_count %></td>
     <td><%= link_to 'Show', venue_product %></td>
     <td><%= link_to 'Edit', edit_venue_product_path(venue_product) %></td>
