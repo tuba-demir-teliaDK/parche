@@ -1,4 +1,5 @@
 class LatestController < ApplicationController
+  authorize_resource :class => false
 
   def cheepins
     sql="select c.id cheepin_id,c.created_at cheepin_date,i.price price,vp.checkin_count cheepin_count,p.name"+
